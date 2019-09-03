@@ -1,0 +1,31 @@
+{
+  "name": "xmlib",
+  "version": "1.0.0",
+  "description": "parse, stringify, transform, minify, prettify",
+  "main": "xml.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/max-pub/XML.js.git"
+  },
+  "keywords": [
+    "xml",
+    "xsl",
+    "xslt",
+    "prettify",
+    "minify",
+    "encode",
+    "decode"
+  ],
+  "author": "Max Fechner",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/max-pub/XML.js/issues"
+  },
+  "homepage": "https://github.com/max-pub/XML.js#readme",
+  "dependencies": {
+    "xmldom": "^0.1.27"
+  }
+}

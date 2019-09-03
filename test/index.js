@@ -4,7 +4,7 @@ var XML = require('../src/xml').XML;
 
 xml = `<body><style>
                 td{text-align:center;}
-            </style><test>abc<schmonk></schmonk></test><table><tr id='1'><th>Monat1</th><th>MRSA</th><th>MSSA</th><th>VRE</th></tr><tr><td class='jo'>
+            </style><test>abc<schmonk></schmonk></test><table><tr id='1'><th>Month</th><th>Bags</th><th>Cars</th><th>Bikes</th></tr><tr><td class='jo'>
             2019-01</td><td>57</td><td>9</td><td>74</td></tr><tr><td>2019-02</td><td>41</td><td>16</td><td>71</td></tr><tr><td>2019-03</td><td>37
             </td><td>11</td><td>57</td>
 </tr><tr><td>2019-04</td><td>39</td><td>11</td><td>

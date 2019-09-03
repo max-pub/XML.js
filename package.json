@@ -2,7 +2,7 @@
   "name": "xmlib",
   "version": "1.0.0",
   "description": "parse, stringify, transform, minify, prettify",
-  "main": "xml.js",
+  "main": "src/xml.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },

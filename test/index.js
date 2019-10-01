@@ -14,4 +14,5 @@ xml = `<body><style>
 
 console.log( XML.prettify(xml) );
 console.log( XML.minify(xml) );
+console.log( XML.highlight(xml) );
 

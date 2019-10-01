@@ -1,0 +1,5 @@
+pre{tab-size: 4; -moz-tab-size: 4; font-size: 14px;}
+tag{color: red; font-weight: bold; }
+attribute{color: green; font-weight: bold}
+value{color: blue;}
+control{color: gray;}

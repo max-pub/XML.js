@@ -1,4 +1,4 @@
-
+var DOMParser = require('xmldom').DOMParser;var XMLSerializer = require('xmldom').XMLSerializer;
 XML = {
     parse: (string, type = 'text/xml') => new DOMParser().parseFromString(string, type),  // like JSON.parse
     stringify: DOM => new XMLSerializer().serializeToString(DOM),                         // like JSON.stringify
@@ -40,3 +40,4 @@ XML = {
     }
 }
 
+module.exports.XML = XML;

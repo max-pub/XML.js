@@ -1,0 +1,85 @@
+<meta charset="UTF-8"/>
+<script src='../dist/web.min.js'></script>
+<script src='../dist/xml-view.tag.js'></script>
+<link rel="stylesheet" type="text/css" href="highlight.css">
+
+<style>
+    @import url('https://fonts.googleapis.com/css?family=Source+Code+Pro&display=swap');
+    *{font-family: "Source Code Pro";}
+    xml-view{
+
+      background: #333;
+    }
+</style>
+
+
+
+
+
+<h1>source</h1>
+<pre id='source'></pre>
+
+<h1>minify</h1>
+<pre id='mini'></pre>
+
+<h1>prettify</h1>
+<pre id='pretty'></pre>
+
+<h1>highlight</h1>
+<pre id='highlight'></pre>
+
+<h1>transform</h1>
+<pre id='transform'></pre>
+
+<h1>transform2</h1>
+<pre id='transform2'></pre>
+
+<h1>WebTag</h1>
+<xml-view></xml-view>
+
+<script>
+xml = `<breakfast_menu><food price='$5.95'>
+    <name>Belgian Waffles</name><description>Two of our famous Belgian Waffles with plenty of real maple syrup</description>
+    <calories>650
+        </calories></food><food price="$7.95" sauce='vanilla ketchup' class='gluten-free'>
+<name>Strawberry Belgian Waffles</name><description>Light Belgian waffles covered with strawberries and whipped cream</description><calories>
+    </calories></food><food price=''><name>Berry-Berry Belgian Waffles</name>
+        <description>Light Belgian waffles covered with an assortment of fresh 
+            berries and whipped cream</description><calories>900</calories></food><food price='$4.50'><name>French Toast
+                </name><description>Thick slices made from our homemade sourdough bread</description><calories>600</calories></food><food><name>Homestyle Breakfast</name><description>Two eggs, bacon or sausage, toast, and our ever-popular hash browns</description><calories>950</calories></food></breakfast_menu>
+                
+                `; // <breakfast_menu></breakfast_menu>
+
+document.querySelector('#source').innerText = xml;
+document.querySelector('#mini').innerText = XML.minify(xml);
+document.querySelector('#pretty').innerText = XML.prettify(xml);
+document.querySelector('#highlight').innerHTML = XML.highlight(xml);
+document.querySelector('xml-view').value = xml;
+
+(async function(){
+  document.querySelector('#transform').innerHTML = XML.stringify(XML.transform((await XML.fetch('demo.xml')).querySelector('Article'), await XML.fetch('demo.xsl')));
+  document.querySelector('#transform2').innerHTML = XML.stringify(XML.transform((await XML.fetch('demo2.xml')).querySelector('#line'), await XML.fetch('demo2.xsl')));
+})()
+</script>
+
+
+
+
+
+
+
+
+
+
+<script>
+  function sayHI() {
+    worker.postMessage({'cmd': 'start', 'msg': 'Hi'});
+  }
+
+  var worker = new Worker('../src/worker.js');
+
+  worker.addEventListener('message', function(e) {
+      console.log('main message',e);
+    document.getElementById('mini').textContent = e.data;
+  }, false);
+</script>

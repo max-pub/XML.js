@@ -1,0 +1,5 @@
+        <query id='line' title='Line List' url='linelist' result='html' >
+            <parameter id='date' title='Datum' input='datepicker'/>
+            <parameter id='ward' title='Station' input='dropdown' source='wards'/>
+            <parameter id='germ' title='Keim' input='dropdown' source='germs'/>
+        </query>

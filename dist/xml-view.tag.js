@@ -31,10 +31,14 @@ window.customElements.define('xml-view', class extends HTMLElement {
             // this.$('iframe').contentWindow.document.body.innerHTML = `<img class='load-indicator' src='https://samherbert.net/svg-loaders/svg-loaders/bars.svg'/>`
             this.theme = {
                 dark:`
-                    body{tab-size: 4; -moz-tab-size: 4; font-size: 14px; white-space: pre; color: white; font-family: monospace;}
+                @import url('https://fonts.googleapis.com/css?family=Source+Code+Pro&display=swap');
+                    body{tab-size: 4; -moz-tab-size: 4; font-size: 14px; white-space: pre; color: white; font-family: 'Source Code Pro', monospace;}
                     tag{color: cornflowerblue; font-weight: bold; }
-                    attribute{color: lightcoral; font-weight: bold}
-                    value{color: lightsalmon; font-weight: bold;}
+                    attribute{color: skyblue; font-weight: bold}
+                    .date{color: lime;}
+                    .number{color: orange;}
+                    .undefined,.null,.NaN{color: violet;}
+                    value{color: white;}
                     control{color: silver; font-weight: bold;}                `,
                 light:``
             }

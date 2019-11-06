@@ -31,18 +31,35 @@ window.customElements.define('xml-view', class extends HTMLElement {
             // this.$('iframe').contentWindow.document.body.innerHTML = `<img class='load-indicator' src='https://samherbert.net/svg-loaders/svg-loaders/bars.svg'/>`
             this.theme = {
                 dark:`
-                @import url('https://fonts.googleapis.com/css?family=Source+Code+Pro&display=swap');
-                    body{tab-size: 4; -moz-tab-size: 4; font-size: 14px; white-space: pre; color: white; font-family: 'Source Code Pro', monospace;}
-                    tag{color: cornflowerblue; font-weight: bold; }
-                    attribute{color: skyblue; font-weight: bold}
+                    @import url('https://fonts.googleapis.com/css?family=Source+Code+Pro&display=swap');
+                    body{tab-size: 4; -moz-tab-size: 4; font-size: 14px; white-space: pre;  font-family: 'Source Code Pro', monospace;}
+                    tag,attribute,control{font-weight: bold;}
+
+                    body{background: #333; color: white;}
+                    tag{color: cornflowerblue;  }
+                    attribute{color: skyblue; }
                     .date{color: lime;}
                     .number{color: orange;}
                     .undefined,.null,.NaN{color: violet;}
                     value{color: white;}
-                    control{color: silver; font-weight: bold;}                `,
-                light:``
+                    control{color: silver; }                
+                `,
+                lite:`
+                    @import url('https://fonts.googleapis.com/css?family=Source+Code+Pro&display=swap');
+                    body{ tab-size: 4; -moz-tab-size: 4; font-size: 14px; white-space: pre;  font-family: 'Source Code Pro', monospace;}
+                    tag,attribute,control{font-weight: bold;}
+
+                    body{background: white; color: black;}
+                    tag{color: cornflowerblue;  }
+                    attribute{color: skyblue; }
+                    .date{color: lime;}
+                    .number{color: orange;}
+                    .undefined,.null,.NaN{color: violet;}
+                    value{color: black;}
+                    control{color: silver; }                
+                `
             }
-            this.$('iframe').contentWindow.document.body.innerHTML = `<style>${this.theme.dark}</style>` + XML.highlight(text);
+            this.$('iframe').contentWindow.document.body.innerHTML = `<style>${this.theme[this.getAttribute('theme') || 'dark']}</style>` + XML.highlight(text);
 
         }
         hide(){this.hidden = true; this.$('iframe').hidden = true;}

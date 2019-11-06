@@ -35,7 +35,8 @@
 <pre id='transform2'></pre>
 
 <h1>WebTag</h1>
-<xml-view></xml-view>
+<xml-view theme='lite'></xml-view>
+<xml-view theme='dark'></xml-view>
 
 <script>
 xml = `<breakfast_menu><food id='234' price='$5.95' last-served='2018-02-07' user='undefined'>
@@ -54,7 +55,8 @@ document.querySelector('#source').innerText = xml;
 document.querySelector('#mini').innerText = XML.minify(xml);
 document.querySelector('#pretty').innerText = XML.prettify(xml);
 document.querySelector('#highlight').innerHTML = XML.highlight(xml);
-document.querySelector('xml-view').value = xml;
+document.querySelector('[theme=lite]').value = xml;
+document.querySelector('[theme=dark]').value = xml;
 
 (async function(){
   document.querySelector('#transform').innerHTML = XML.stringify(XML.transform((await XML.fetch('demo.xml')).querySelector('Article'), await XML.fetch('demo.xsl')));

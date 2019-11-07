@@ -29,10 +29,10 @@ XML = {
             if(value=='NaN') return 'NaN';
             if(value*1==value) return 'number';
             let date = new Date(value);
-            if (date.getFullYear() > 1970 && date.getFullYear() < 2030) return 'date';            
+            if (date.getFullYear() > 1970 && date.getFullYear() < 5000) return 'date';            
         }
         if (node.nodeType == 3 && !node.textContent.trim()) return ''; // if textContent is only linebreaks or spaces, return nothing
-        if (node.nodeType == 3) return tabs + node.textContent.trim() + newLine;
+        if (node.nodeType == 3) return tabs + tag('content',node.textContent.trim()) + newLine;
         if (!node.tagName) return XML.toString(node.firstChild, options); // only relevant for the uppermost DOM layer, which is not an xml-node
         // let output = tabs + tag('control') + lt + tag('control', 1) + tag('tag') + node.tagName + tag('tag', 1); // >\n
         let output = tabs + tag('control', lt) + tag('tag', node.tagName); // >\n

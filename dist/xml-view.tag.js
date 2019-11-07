@@ -9,25 +9,42 @@ document.head.insertAdjacentHTML('beforeend',`
     body{tab-size: 4; -moz-tab-size: 4; font-size: 14px; white-space: pre;  font-family: 'Source Code Pro', monospace;}
     tag,attribute,control{font-weight: bold;}
     
-    body[theme=dark]{background: #333; color: white;}
-    [theme=dark] tag{color: cornflowerblue;  }
-    [theme=dark] attribute{color: skyblue; }
-    [theme=dark] .date{color: lime;}
-    [theme=dark] .number{color: orange;}
-    [theme=dark] .undefined,.null,.NaN{color: violet;}
-    [theme=dark] value{color: white;}
-    [theme=dark] control{color: silver; }  
+  
+    body,[theme=dark] {
+        --background: #333;
+        --control: silver;
+        --tag: cornflowerblue;
+        --attribute: skyblue;
+        --content: white;
+        --value: white;
+        --date: mediumseagreen;
+        --number: salmon;
+        --null: violet;
+        --undefined: violet;
+    }
+    [theme=lite] {
+        --background: white;
+        --control: gray;
+        --tag: cornflowerblue;
+        --attribute: skyblue;
+        --content: black;
+        --value: black;
+        --date: limegreen;
+        --number: orange;
+    }  
 
-    body[theme=lite]{background: white; color: black;}
-    [theme=lite] tag{color: cornflowerblue;  }
-    [theme=lite] attribute{color: skyblue; }
-    [theme=lite] .date{color: lime;}
-    [theme=lite] .number{color: orange;}
-    [theme=lite] .undefined {color: violet;}
-    [theme=lite] .null {color: violet;}
-    [theme=lite] .NaN {color: violet;}
-    [theme=lite] value{color: black;}
-    [theme=lite] control{color: silver; }    
+    body{background: var(--background);}
+    control{color: var(--control); }   
+    tag{color: var(--tag);  }
+    attribute{color: var(--attribute); }
+    content{color: var(--content);}
+    value{color: var(--value);}
+    .date{color: var(--date);}
+    .number{color: var(--number);}
+    .null{color: var(--null);}
+    .undefined{color: var(--undefined);}
+
+
 
    
 </style>

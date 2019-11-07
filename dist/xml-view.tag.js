@@ -21,6 +21,8 @@ document.head.insertAdjacentHTML('beforeend',`
         --number: salmon;
         --null: violet;
         --undefined: violet;
+        --id: red;
+        --class: orange;
     }
     [theme=lite] {
         --background: white;
@@ -43,6 +45,8 @@ document.head.insertAdjacentHTML('beforeend',`
     .number{color: var(--number);}
     .null{color: var(--null);}
     .undefined{color: var(--undefined);}
+    .id{color: var(--id);}
+    .class{color: var(--class);}
 
 
 

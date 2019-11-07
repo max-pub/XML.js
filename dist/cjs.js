@@ -22,14 +22,15 @@ XML = {
         let lt = options.highlight ? '&lt;' : '<';
         let gt = options.highlight ? '&gt;' : '>';
         // let tag = (name, close) => (options.highlight ? '<' + (close ? '/' : '') + name + '>' : '');
-        let tag = (name, value, _class = '') => (options.highlight ? `<${name} class='${_class}'>${value}</${name}>` : value);
+        let tag = (name, value, _class = '') => (options.highlight ? `<${name} ${_class?`class='${_class}'`:''}>${value}</${name}>` : value);
         let valueType = value => {
             if(value=='null') return 'null';
             if(value=='undefined') return 'undefined';
             if(value=='NaN') return 'NaN';
             if(value*1==value) return 'number';
             let date = new Date(value);
-            if (date.getFullYear() > 1970 && date.getFullYear() < 5000) return 'date';            
+            if (date.getFullYear() > 1900 && date.getFullYear() < 2100) return 'date';            
+            if (date.getFullYear() > 1000 && date.getFullYear() < 5000) return 'fardate';            
         }
         if (node.nodeType == 3 && !node.textContent.trim()) return ''; // if textContent is only linebreaks or spaces, return nothing
         if (node.nodeType == 3) return tabs + tag('content',node.textContent.trim()) + newLine;
@@ -39,7 +40,7 @@ XML = {
         let hasOnlyOneTextChild = ((node.childNodes.length == 1) && (node.childNodes[0].nodeType == 3) && !node.childNodes[0].textContent.trim().includes('\n'));
         let hasOnlyEmptyTextChild = hasOnlyOneTextChild && (node.childNodes[0].textContent.trim() == '');
         for (let i = 0; i < node.attributes.length; i++)
-            output += ' ' + tag('attribute', node.attributes[i].name) + tag('control', '="') + tag('value', node.attributes[i].value, valueType(node.attributes[i].value)) + tag('control', '"');
+            output += ' ' + tag('attribute', node.attributes[i].name, node.attributes[i].name) + tag('control', '="') + tag('value', node.attributes[i].value, valueType(node.attributes[i].value)) + tag('control', '"');
         // output += ` ${tag('attribute', node.attributes[i].name)}${tag('control', '="')}${tag('value', node.attributes[i].value)}${tag('control', '"')}`;
         // output += ` ${tag('attribute')}${node.attributes[i].name}${tag('attribute', 1)}${tag('control')}="${tag('control', 1)}${tag('value')}${node.attributes[i].value}${tag('value', 1)}${tag('control')}"${tag('control', 1)}`;
         // if ((node.childNodes.length == 0) || hasOnlyEmptyTextChild) return output + tag('control') + ' /' + gt + tag('control', 1) + newLine;

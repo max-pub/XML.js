@@ -1,5 +1,5 @@
 <meta charset="UTF-8"/>
-<script src='../dist/web.min.js'></script>
+<script src='../dist/full.min.js'></script>
 <script src='../dist/xml-view.tag.js'></script>
 <link rel="stylesheet" type="text/css" href="highlight.css">
 
@@ -25,17 +25,14 @@
 <h1>prettify</h1>
 <pre id='pretty'></pre>
 
-<h1>highlight</h1>
-<pre id='highlight'></pre>
-
 <h1>transform</h1>
-<pre id='transform'></pre>
+<pre id='transform-xml'></pre>
+<pre id='transform-xsl'></pre>
+<pre id='transform-res'></pre>
 
-<h1>transform2</h1>
-<pre id='transform2'></pre>
-
-<h1>WebTag</h1>
+<h1>WebTag lite</h1>
 <xml-view theme='lite'></xml-view>
+<h1>WebTag dark</h1>
 <xml-view theme='dark'></xml-view>
 
 <script>
@@ -51,16 +48,43 @@ xml = `<breakfast_menu><food id='234' price='$5.95' last-served='2018-02-07' use
                 
                 `; // <breakfast_menu></breakfast_menu>
 
+
+xml2 = `<Article>
+  <Title>My Article</Title>
+  <Authors>
+    <Author>Mr. Foo</Author>
+    <Author>Mr. Bar</Author>
+  </Authors>
+  <Body>This is my article text.</Body>
+</Article>`;
+xsl = `<?xml version="1.0"?>
+<xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+
+  <xsl:output method="text"/>
+
+  <xsl:template match="/">
+    Article - <xsl:value-of select="/Article/Title"/>
+    Authors: <xsl:apply-templates select="/Article/Authors/Author"/>
+  </xsl:template>
+
+  <xsl:template match="Author">
+    - <xsl:value-of select="." />
+  </xsl:template>
+
+</xsl:stylesheet>`;
+
 document.querySelector('#source').innerText = xml;
 document.querySelector('#mini').innerText = XML.minify(xml);
 document.querySelector('#pretty').innerText = XML.prettify(xml);
-document.querySelector('#highlight').innerHTML = XML.highlight(xml);
+document.querySelector('#transform-xml').innerHTML = XML.highlight(xml2);
+document.querySelector('#transform-xsl').innerHTML = XML.highlight(xsl);
 document.querySelector('[theme=lite]').value = xml;
 document.querySelector('[theme=dark]').value = xml;
 
 (async function(){
-  document.querySelector('#transform').innerHTML = XML.stringify(XML.transform((await XML.fetch('demo.xml')).querySelector('Article'), await XML.fetch('demo.xsl')));
-  document.querySelector('#transform2').innerHTML = XML.stringify(XML.transform((await XML.fetch('demo2.xml')).querySelector('#line'), await XML.fetch('demo2.xsl')));
+  document.querySelector('#transform-res').innerHTML = XML.transform(xml2,xsl);
+  // document.querySelector('#transform').innerHTML = XML.stringify(XML.transform((await XML.fetch('demo.xml')).querySelector('Article'), await XML.fetch('demo.xsl')));
+  // document.querySelector('#transform2').innerHTML = XML.stringify(XML.transform((await XML.fetch('demo2.xml')).querySelector('#line'), await XML.fetch('demo2.xsl')));
 })()
 </script>
 
@@ -71,17 +95,3 @@ document.querySelector('[theme=dark]').value = xml;
 
 
 
-
-
-<script>
-  function sayHI() {
-    worker.postMessage({'cmd': 'start', 'msg': 'Hi'});
-  }
-
-  var worker = new Worker('../src/worker.js');
-
-  worker.addEventListener('message', function(e) {
-      console.log('main message',e);
-    document.getElementById('mini').textContent = e.data;
-  }, false);
-</script>

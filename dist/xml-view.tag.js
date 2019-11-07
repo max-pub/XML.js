@@ -18,6 +18,7 @@ document.head.insertAdjacentHTML('beforeend',`
         --content: white;
         --value: white;
         --date: mediumseagreen;
+        --far-date: lightseagreen;
         --number: salmon;
         --null: violet;
         --undefined: violet;
@@ -74,12 +75,12 @@ window.customElements.define('xml-view', class extends HTMLElement {
             new MutationObserver(()=>{
                 this.$('iframe').hidden = this.hidden;
             }).observe(this, {attributes: true}); // on hide, hide iframe too
-             import('./web.min.js');
+             import('./full.min.js');
         }
         set value(text){
             // console.log('xml-value',text);
             this.show();
-            console.log('style',this.$('style').innerText);
+            // console.log('style',this.$('style').innerText);
             // this.$('iframe').contentWindow.document.body.innerHTML = `<img class='load-indicator' src='https://samherbert.net/svg-loaders/svg-loaders/bars.svg'/>`
             // this.theme = {
             //     dark:`

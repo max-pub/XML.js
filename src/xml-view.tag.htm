@@ -65,21 +65,23 @@
     
   
     body,[theme=dark] {
-        --background: #333;
-        --control: silver;
+        --background: #222;
+        --control: gray;
         --tag: cornflowerblue;
         --attribute: skyblue;
         --content: white;
         --value: white;
+
         --date: mediumseagreen;
         --far-date: lightseagreen;
         --number: salmon;
         --null: violet;
         --undefined: violet;
-        --id: red;
-        --class: orange;
         --true: lime;
         --false: red;
+
+        --id: orange;
+        --class: orange;
     }
     [theme=lite] {
         --background: white;
@@ -99,13 +101,15 @@
     content{color: var(--content);}
     value{color: var(--value);}
     .date{color: var(--date);}
+    .far-date{color: var(--far-date);}
     .number{color: var(--number);}
     .null{color: var(--null);}
     .undefined{color: var(--undefined);}
-    .boolean.true{color: var(--true);}
-    .boolean.false{color: var(--false);}
-    .id{color: var(--id);}
-    .class{color: var(--class);}
+    .true{color: var(--true);}
+    .false{color: var(--false);}
+    .id{color: var(--id); text-transform: uppercase;}
+    .class{color: var(--class); }
+    pair{background: #333; border-radius: 5px; padding: 3px; margin-left: 10px;}
 
 
 

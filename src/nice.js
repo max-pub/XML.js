@@ -35,7 +35,7 @@ XML = {
             let hasOnlyOneTextChild = ((node.childNodes.length == 1) && (node.childNodes[0].nodeType == 3) && !node.childNodes[0].textContent.trim().includes('\n'));
             let hasOnlyEmptyTextChild = hasOnlyOneTextChild && (node.childNodes[0].textContent.trim() == '');
             for (let i = 0; i < node.attributes.length; i++)
-                output += ' ' + tag('attribute', node.attributes[i].name, node.attributes[i].name) + tag('control', '="') + tag('value', node.attributes[i].value, valueType(node.attributes[i].value)) + tag('control', '"');
+                output += ' ' + tag('pair', tag('attribute', node.attributes[i].name, node.attributes[i].name) + tag('control', '="') + tag('value', node.attributes[i].value, valueType(node.attributes[i].value)) + tag('control', '"') );
             // output += ` ${tag('attribute', node.attributes[i].name)}${tag('control', '="')}${tag('value', node.attributes[i].value)}${tag('control', '"')}`;
             // output += ` ${tag('attribute')}${node.attributes[i].name}${tag('attribute', 1)}${tag('control')}="${tag('control', 1)}${tag('value')}${node.attributes[i].value}${tag('value', 1)}${tag('control')}"${tag('control', 1)}`;
             // if ((node.childNodes.length == 0) || hasOnlyEmptyTextChild) return output + tag('control') + ' /' + gt + tag('control', 1) + newLine;
@@ -46,7 +46,7 @@ XML = {
             for (let i = 0; i < node.childNodes.length; i++)
                 if (hasOnlyOneTextChild) output += tag('content', node.childNodes[i].textContent.trim(), valueType(node.childNodes[i].textContent.trim()));
                 else output += XML.toString(node.childNodes[i], options, level + 1);
-            return output + (hasOnlyOneTextChild ? '' : tabs) + tag('control', lt) + tag('tag', node.tagName) + tag('control', gt) + newLine;
+            return output + (hasOnlyOneTextChild ? '' : tabs) + tag('control', lt + '/') + tag('tag', node.tagName) + tag('control', gt) + newLine;
             // return output + (hasOnlyOneTextChild ? '' : tabs) + tag('control') + lt + `/` + tag('control', 1) + tag('tag') + node.tagName + tag('tag', 1) + tag('control') + gt + tag('control', 1) + newLine;
         }
     }
